@@ -1,0 +1,11 @@
+namespace :git do
+  namespace :hub do
+
+    desc "Adds github.com as remote origin (cd <repo-dir> first)"
+    task :add_origin do
+      repo = File.basename(Dir.getwd)
+      system("git remote add origin git@github.com:jazen/#{repo}.git")
+    end
+
+  end
+end
