@@ -1,0 +1,30 @@
+namespace :git do
+  namespace :rails do
+
+    desc "Setup a new Rails app for git. (cd <rails-app> first.)"
+    task :new_app => [ "rails:rm_tmp_dirs", "git:hold_empty_dirs" ] do
+      system("git init")
+      system("touch .gitignore")
+      
+      [
+       "log/*.log", 
+       "log/*.pid",
+       "db/*.db",
+       "db/*.sqlite3",
+       "db/schema.rb",
+       "tmp/**/*",
+       ".DS_Store",
+       "doc/api",
+       "doc/app",
+       "config/database.yml"
+      ].each do |entry|
+        system("echo #{entry} >> .gitignore")
+      end
+
+      system("cp config/database.yml config/database.example.yml")
+      system("git add .")
+      system("git commit -m 'Setting up a new rails app.")
+    end
+
+  end
+end
