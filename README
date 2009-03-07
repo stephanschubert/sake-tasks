@@ -1,1 +1,16 @@
 My sake tasks. For teh win.
+
+= 1. Requirements =
+
+Install the sake gem first:
+
+$ sudo gem install sake
+
+= 2. Installation =
+
+Just execute the install script:
+
+$ cd sake-tasks
+$ ruby install.rb
+
+Enjoy!
