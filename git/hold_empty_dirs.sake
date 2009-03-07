@@ -1,0 +1,8 @@
+namespace :git do
+
+  desc "Add a .gitignore to empty directories to allow them to be committed to git"
+  task :hold_empty_dirs do
+    system("find . \\( -type d -empty \\) -and \\( -not -regex ./\\.git.* \\) -exec touch {}/.gitignore \\;")
+  end
+
+end
