@@ -1,0 +1,10 @@
+namespace :rails do
+
+  desc "Remove rails tmp dirs"
+  task :rm_tmp_dirs do
+    %w(pids sessions sockets cache).each do |f| 
+      system("rmdir ./tmp/#{f}")
+    end
+  end
+
+end
