@@ -1,0 +1,11 @@
+namespace :git do
+  namespace :rails do
+
+    desc "Add Rails as a git submodule"
+    task :add_as_submodule do
+      system("git submodule add git://github.com/rails/rails.git vendor/rails")
+      system("git commit -m 'Adding Rails as a submodule.' .gitmodules vendor/rails")
+    end    
+
+  end
+end
