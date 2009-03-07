@@ -1,0 +1,12 @@
+namespace :git do
+  namespace :hub do
+    namespace :rails do
+
+      desc "Setup a new Rails app for github"
+      task :new_app => [ "git:rails:new_app", "git:hub:add_origin" ] do
+        system("git push origin master")
+      end
+
+    end
+  end
+end
