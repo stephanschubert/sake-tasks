@@ -28,6 +28,10 @@ namespace :git do
         system("echo #{entry} >> .gitignore")
       end
 
+      # Remove empty logs but keep log/ itself
+      system("rm log/*log")
+      system("touch log/.gitignore")
+
       system("cp config/database.yml config/database.example.yml")
       system("git add .")
       system("git commit -m 'Setting up a new Rails app.'")
