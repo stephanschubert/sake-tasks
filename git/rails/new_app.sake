@@ -2,19 +2,24 @@ namespace :git do
   namespace :rails do
 
     desc "Setup a new Rails app for git. (cd <rails-app> first.)"
-    task :new_app => [ "git:init", "git:rails:add_as_submodule" ] do
-      system("ruby vendor/rails/railties/bin/rails .")
+    task :new_app => [ 
+      "git:init", 
+      "git:rails:add_as_submodule", 
+      "rails:init", 
+      "rails:rm_tmp_dirs", 
+      "git:hold_empty_dirs" 
+    ] do
       system("touch .gitignore")
       
       [
-       "*#*#",
-       "*~",
-       "log/*.log", 
-       "log/*.pid",
-       "db/*.db",
-       "db/*.sqlite3",
+       "\\*#\\*#",
+       "\\*~",
+       "log/\\*.log", 
+       "log/\\*.pid",
+       "db/\\*.db",
+       "db/\\*.sqlite3",
        "db/schema.rb",
-       "tmp/**/*",
+       "tmp/\\*\\*/\\*",
        ".DS_Store",
        "doc/api",
        "doc/app",
@@ -25,7 +30,7 @@ namespace :git do
 
       system("cp config/database.yml config/database.example.yml")
       system("git add .")
-      system("git commit -m 'Setting up a new rails app.'")
+      system("git commit -m 'Setting up a new Rails app.'")
     end
 
   end

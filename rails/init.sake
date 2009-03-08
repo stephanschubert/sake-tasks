@@ -1,0 +1,12 @@
+namespace :rails do
+
+  desc "Initializes a Rails app from vendor/rails if possible or uses the gem's binary"
+  task :init do
+    if File.exists?("vendor/rails")
+      system("ruby vendor/rails/railties/bin/rails .")
+    else
+      system("rails .")
+    end
+  end
+
+end
