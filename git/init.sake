@@ -1,0 +1,8 @@
+namespace :git do
+
+  desc "Initializes a new git repository"
+  task :init do
+    system("git init")
+  end
+
+end

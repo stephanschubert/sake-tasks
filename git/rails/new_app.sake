@@ -2,8 +2,8 @@ namespace :git do
   namespace :rails do
 
     desc "Setup a new Rails app for git. (cd <rails-app> first.)"
-    task :new_app => [ "rails:rm_tmp_dirs", "git:hold_empty_dirs" ] do
-      system("git init")
+    task :new_app => [ "git:init", "git:rails:add_as_submodule" ] do
+      system("vendor/rails/railties/bin/rails .")
       system("touch .gitignore")
       
       [
