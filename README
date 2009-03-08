@@ -1,16 +1,34 @@
 My sake tasks. For teh win.
 
-= 1. Requirements =
+== 1. Requirements ==
 
 Install the sake gem first:
 
 $ sudo gem install sake
 
-= 2. Installation =
+== 2. (Un)Install ==
 
 Just execute the install script:
 
 $ cd sake-tasks
 $ ruby install.rb
+
+And to remove:
+
+$ cd sake-tasks
+$ ruby uninstall.rb
+
+== 3. Features ==
+
+sake git:hold_empty_dirs          # Add a .gitignore to empty directories to allow them to be committed to git
+sake git:hub:add_origin           # Adds github.com as remote origin (cd <repo-dir> first)
+sake git:hub:rails:new_app        # Setup a new Rails app for github
+sake git:init                     # Initializes a new git repository
+sake git:rails:add_as_submodule   # Add Rails as a git submodule
+sake git:rails:new_app            # Setup a new Rails app for git. (cd <rails-app> first.)
+sake git:update_submodules        # Update git submodules
+sake rails:init                   # Initializes a Rails app from vendor/rails if possible or uses the gem's binary
+sake rails:rm_tmp_dirs            # Remove rails tmp dirs
+
 
 Enjoy!
