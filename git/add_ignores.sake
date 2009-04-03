@@ -14,7 +14,7 @@ EOS
     File.open(".gitignore", "w") { |f| f.write(ignores) }
 
     system("git add .gitignore")
-    system("git commit -m 'Added ignore patterns')
+    system("git commit -m 'Added ignore patterns'")
   end
 
 end
