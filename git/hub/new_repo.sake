@@ -1,0 +1,13 @@
+namespace :git do
+  namespace :hub do
+
+    desc "Setups a new repository at github (cd <repo-dir> first)"
+    task :new_repo => [ "git:init", "git:add_ignores", "git:hub:add_origin" ] do
+      system("touch README")
+      system("git add README")
+      system("git commit -m 'First commit.'")
+      system("git push origin master")
+    end
+
+  end
+end

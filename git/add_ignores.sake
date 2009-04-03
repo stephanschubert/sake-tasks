@@ -1,0 +1,20 @@
+namespace :git do
+  
+  desc "Adds a default set of ignore patterns using .gitignore"
+  task :add_ignores do
+    ignores = <<EOS
+# OSX specific
+.DS_Store
+
+# Emacs' backups
+*#*#
+*~  
+EOS
+
+    File.open(".gitignore", "w") { |f| f.write(ignores) }
+
+    system("git add .gitignore")
+    system("git commit -m 'Added ignore patterns')
+  end
+
+end
