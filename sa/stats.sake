@@ -1,0 +1,9 @@
+namespace :sa do
+
+  desc "Show SpamAssassin stats"
+  task :stats do
+    dbpath = ENV["DBPATH"] || "/var/lib/amavis/.spamassassin/bayes"
+    system "sa-learn", "--dbpath", dbpath, "--dump", "magic"
+  end
+
+end
