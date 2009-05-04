@@ -1,0 +1,19 @@
+namespace :git do
+
+  desc "Delete a submodule - use SUBMODULE=<name>"
+  task :delete_submodule do
+    submodule = ENV["SUBMODULE"]
+
+    pattern_for_gitmodules = /\[submodule ["]#{submodule}["]\]\n(.+?)\n(.+?)\n/
+    pattern_for_git_config = /\[submodule ["]#{submodule}["]\]\n(.+?)\n/
+
+    patched_gitmodules = File.read(".gitmodules").sub(pattern_for_gitmodules, "")
+    patched_git_config = File.read(".git/config").sub(pattern_for_git_config, "")
+
+    File.open(".gitmodules", "w") { |f| f.write patched_gitmodules }
+    File.open(".git/config", "w") { |f| f.write patched_git_config }
+
+    `rm -rf #{submodule}`
+  end
+
+end
