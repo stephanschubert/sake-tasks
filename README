@@ -33,4 +33,20 @@ sake rails:rm_tmp_dirs            # Remove rails tmp dirs
 
 sake sa:stats                     # Show SpamAssassin stats
 
+== PLEASE NOTE ==
+
+Some tasks are using possibly dangerous file operations which would prevent
+them from installing using sake with throwing a SecurityError. If you trust
+them and want them installed too - patch this line in sake.rb:
+
+  Thread.new { instance.instance_eval "$SAFE = 3\n#{body}" }.join
+
+to
+
+  Thread.new { instance.instance_eval "$SAFE = 0\n#{body}" }.join
+
+Sake is a bit more strict - no changes needed when using it as a normal
+rake task.
+
+
 Enjoy!

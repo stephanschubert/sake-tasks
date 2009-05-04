@@ -1,0 +1,26 @@
+require "fileutils"
+
+namespace :git do
+
+  desc "Updates all git submodules from remote origin (use SUBMODULE=blah to specify one)"
+  task :update_submodules do
+
+    submodules = {}
+    File.read(".gitmodules").scan(/path\s=\s(.+)/) { |match|
+      path, name = match[0].downcase, match[0].split("/").last.downcase
+      submodules[name] = path
+    }
+
+    if requested = ENV["SUBMODULE"]
+      submodules.reject! { |name, path| name != requested }
+    end
+    
+    root = File.expand_path(Dir.pwd)
+    submodules.sort.each { |name, path| 
+      FileUtils.chdir("#{root}/#{path}", :verbose => true)
+      `git remote update`
+      FileUtils.chdir(root)
+    }
+  end
+
+end
