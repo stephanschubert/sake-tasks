@@ -1,0 +1,13 @@
+namespace :musca do
+  namespace :setup do
+
+    desc "Creates window layout used for development"
+    task :dev do
+      commands = [
+        "vsplit 6/8",
+                 
+      ]
+    end
+    
+  end
+end

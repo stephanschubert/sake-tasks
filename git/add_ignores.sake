@@ -8,8 +8,9 @@ namespace :git do
 
 # Emacs' backups
 *#*#
-*~ 
-*.*~ 
+*.*~
+*~
+
 EOS
 
     File.open(".gitignore", "w") { |f| f.write(ignores) }
