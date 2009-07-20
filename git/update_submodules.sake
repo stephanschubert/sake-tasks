@@ -14,11 +14,13 @@ namespace :git do
     if requested = ENV["SUBMODULE"]
       submodules.reject! { |name, path| name != requested }
     end
-    
+
     root = File.expand_path(Dir.pwd)
     submodules.sort.each { |name, path| 
+      puts path.inspect
       FileUtils.chdir("#{root}/#{path}", :verbose => true)
       `git remote update`
+      `git merge origin/master`
       FileUtils.chdir(root)
     }
   end
