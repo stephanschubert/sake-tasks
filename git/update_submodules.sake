@@ -17,10 +17,9 @@ namespace :git do
 
     root = File.expand_path(Dir.pwd)
     submodules.sort.each { |name, path| 
-      puts path.inspect
       FileUtils.chdir("#{root}/#{path}", :verbose => true)
-      `git remote update`
-      `git merge origin/master`
+      system "git", "remote", "update"
+      system "git", "merge", "origin/master"
       FileUtils.chdir(root)
     }
   end
