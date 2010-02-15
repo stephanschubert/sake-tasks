@@ -1,0 +1,10 @@
+namespace :git do
+  namespace :rails do
+
+    desc "Switch to Rails' stable branch (currently 2-3-stable)"
+    task :switch_to_stable_branch do
+      system "cd vendor/rails && git checkout --track -b 2-3-stable origin/2-3-stable"
+    end
+
+  end
+end
